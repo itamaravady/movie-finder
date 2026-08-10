@@ -3,7 +3,7 @@ name: Check Planet Cinema
 on:
   schedule:
     # Every hour, at 17 minutes past the hour
-    - cron: "* * * * *"
+    - cron: "*/5 * * * *"
 
   # Allows you to run it manually from GitHub
   workflow_dispatch:
