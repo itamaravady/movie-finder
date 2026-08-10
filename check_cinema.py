@@ -2,11 +2,22 @@ import os
 import requests
 
 
+DATE = "2026-08-21"
+FILM_ID = "7460s2r"
+
 CINEMA_URL = (
     "https://www.planetcinema.co.il/il/data-api-service/v1/"
     "quickbook/10100/cinema-events/in-group/"
-    "planet-rishon-letziyon/with-film/7460s2r/"
-    "at-date/2026-08-21?attr=&lang=he_IL"
+    "planet-rishon-letziyon/with-film/"
+    f"{FILM_ID}/at-date/{DATE}?attr=&lang=he_IL"
+)
+
+TICKETS_URL = (
+    f"https://www.planetcinema.co.il/films/the-odyssey/{FILM_ID}"
+    "#/buy-tickets-by-film?in-cinema=1072"
+    f"&at={DATE}"
+    f"&for-movie={FILM_ID}"
+    "&view-mode=list"
 )
 
 TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
@@ -40,13 +51,23 @@ def main():
     events = get_events()
     event_count = len(events)
 
-    message = (
-        "🎬 Planet Cinema\n"
-        "Rishon LeZiyon\n"
-        "Film: 7460s2r\n"
-        "Date: 2026-08-21\n\n"
-        f"Events found: {event_count}"
-    )
+    if event_count > 0:
+        message = (
+            "🎬 Planet Cinema\n"
+            "Rishon LeZiyon\n"
+            "The Odyssey\n"
+            f"Date: {DATE}\n\n"
+            f"Events found: {event_count}\n\n"
+            f"🎟️ Buy tickets:\n{TICKETS_URL}"
+        )
+    else:
+        message = (
+            "🎬 Planet Cinema\n"
+            "Rishon LeZiyon\n"
+            "The Odyssey\n"
+            f"Date: {DATE}\n\n"
+            "No events found."
+        )
 
     send_telegram(message)
 
