@@ -2,7 +2,7 @@ name: Check Planet Cinema
 
 on:
   schedule:
-    - cron: "17 * * * *"
+    - cron: "48 * * * *"
   workflow_dispatch:
 
 jobs:
