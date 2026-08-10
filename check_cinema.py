@@ -51,6 +51,7 @@ def main():
     events = get_events()
     event_count = len(events)
 
+    # Only send a Telegram message when events are found
     if event_count > 0:
         message = (
             "🎬 Planet Cinema\n"
@@ -60,16 +61,8 @@ def main():
             f"Events found: {event_count}\n\n"
             f"🎟️ Buy tickets:\n{TICKETS_URL}"
         )
-    else:
-        message = (
-            "🎬 Planet Cinema\n"
-            "Rishon LeZiyon\n"
-            "The Odyssey\n"
-            f"Date: {DATE}\n\n"
-            "No events found."
-        )
 
-    send_telegram(message)
+        send_telegram(message)
 
 
 if __name__ == "__main__":
