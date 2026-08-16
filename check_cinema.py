@@ -2,7 +2,7 @@ import os
 import requests
 
 
-DATE = "2026-08-20"
+DATE = "2026-08-28"
 FILM_ID = "7460s2r"
 
 CINEMA_URL = (
@@ -52,17 +52,17 @@ def main():
     event_count = len(events)
 
     # Only send a Telegram message when events are found
-    # if event_count > 0:
-    message = (
-        "🎬 Planet Cinema\n"
-        "Rishon LeZiyon\n"
-        "The Odyssey\n"
-        f"Date: {DATE}\n\n"
-        f"Events found: {event_count}\n\n"
-        f"🎟️ Buy tickets:\n{TICKETS_URL}"
-    )
+    if event_count > 0:
+        message = (
+            "🎬 Planet Cinema\n"
+            "Rishon LeZiyon\n"
+            "The Odyssey\n"
+            f"Date: {DATE}\n\n"
+            f"Events found: {event_count}\n\n"
+            f"🎟️ Buy tickets:\n{TICKETS_URL}"
+        )
 
-    send_telegram(message)
+        send_telegram(message)
 
 
 if __name__ == "__main__":
